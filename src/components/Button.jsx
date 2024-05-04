@@ -24,7 +24,7 @@ function Button({
 
     switch(btnSize){
         case 'fullWidth':
-            btnSizeChange = "w-full"
+            btnSizeChange = "w-[100%]"
         break;
         
         case 'normalSize':

@@ -63,50 +63,19 @@ function Login() {
         <div className='w-96 h-54 grid place-items-center border-2 py-10 px-3 rounded-xl'>
             <FormContext.Provider value={{ 
             initialFields: testForm,
-            title: 'Login'
+            title: 'Admin Login'
             }}>
             <Form />
             </FormContext.Provider>
-            <div className='flex items-center gap-5 mt-2'>
+            <div className='flex items-center gap-5 mt-2 w-52'>
                 <Button
                     bgColor='blue'
                     btnSize='fullWidth'
                 >
                     Login
                 </Button>
-                <Button
-                    bgColor='red'
-                    onClick={() => handleModal('openModal')}
-                >
-                    Register
-                </Button>
             </div>
         </div>
-        {action === true && (
-            <div className='absolute bg-slate-400 w-96 h-54 py-5 rounded-xl'>
-                <FormContext.Provider value={{ 
-                    initialFields: registrationForm,
-                    title: 'Register'
-                    }}>
-                    <Form />
-                </FormContext.Provider>
-                <div className='flex justify-center gap-5 mt-2'>
-                    <Button
-                        bgColor='blue'
-                        btnSize='normalSize'
-                    >
-                        Login
-                    </Button>
-                    <Button
-                        bgColor='red'
-                        btnSize='normalSize'
-                        onClick={() => handleModal('closeModal')}
-                    >
-                        Close
-                    </Button>
-                </div>
-            </div>
-        )}
       </div>
     </>
   )

@@ -13,6 +13,9 @@ function Form() {
             break;
         }
     }
+    const handleSubmit = (data) => {
+        
+    }
     const renderForm = (row, rowIndex) => {
         return context?.initialFields?.map(field => (
             <div key={field.name}>
@@ -141,7 +144,7 @@ function Form() {
     }
   return (
     <div className="px-4">
-        <form>
+        <form onSubmit={handleSubmit}>
             <div className='w-full grid place-items-center'>
                 <h1 className='text-white text-2xl font-bold'>{context?.title}</h1>
             </div>
