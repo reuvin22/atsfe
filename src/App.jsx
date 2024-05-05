@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="bg-slate-300 h-[100vh]">
       <Routes>
-        <Route path="/" element={<AdminPage />}/>
+        <Route path="/" element={<Home />}/>
         <Route path="/login" element={<Login />}/>
       </Routes>
     </div>
