@@ -18,12 +18,12 @@ function Form() {
     }
     const renderForm = (row, rowIndex) => {
         return context?.initialFields?.map(field => (
-            <div key={field.name}>
+            <div key={field.name} className={`${context?.fontColor}`}>
                 {field.type === 'text' && !field.disabled && (
                      <div className="grid grid-cols-1">
                      <label
                        htmlFor={field.name}
-                       className=" text-white font-medium text-sm capitalize"
+                       className=" font-medium text-sm capitalize"
                      >
                        {field.label}
                      </label>
@@ -53,7 +53,7 @@ function Form() {
                      <div className="grid grid-cols-1">
                      <label
                        htmlFor={field.name}
-                       className=" text-white font-medium text-sm capitalize"
+                       className=" font-medium text-sm capitalize"
                      >
                        {field.label}
                      </label>
@@ -83,7 +83,7 @@ function Form() {
                      <div className="grid grid-cols-1">
                      <label
                        htmlFor={field.name}
-                       className=" text-white font-medium text-sm capitalize"
+                       className=" font-medium text-sm capitalize"
                      >
                        {field.label}
                      </label>
@@ -113,7 +113,7 @@ function Form() {
                      <div>
                      <label
                        htmlFor={field.name}
-                       className=" text-white font-medium text-sm capitalize"
+                       className=" font-medium text-sm capitalize"
                      >
                        {field.label}
                      </label>
@@ -148,7 +148,9 @@ function Form() {
             <div className='w-full grid place-items-center'>
                 <h1 className='text-white text-2xl font-bold'>{context?.title}</h1>
             </div>
-            {renderForm()}
+            <div className={`${context?.fontColor}`}>
+              {renderForm()}
+            </div>
         </form>
     </div>
   )

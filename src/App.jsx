@@ -1,11 +1,10 @@
-import Login from "./pages/Auth/Login";
-
+import Home from "./pages/Home"
 
 function App() {
   return (
-    <>
-      <Login />
-    </>
+    <div className="bg-slate-300 h-[100vh]">
+      <Home />
+    </div>
   )
 }
 
