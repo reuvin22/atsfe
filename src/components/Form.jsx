@@ -23,7 +23,7 @@ function Form() {
                      <div className="grid grid-cols-1">
                      <label
                        htmlFor={field.name}
-                       className=" font-medium text-sm capitalize"
+                       className="text-white font-medium text-sm capitalize"
                      >
                        {field.label}
                      </label>
@@ -53,7 +53,7 @@ function Form() {
                      <div className="grid grid-cols-1">
                      <label
                        htmlFor={field.name}
-                       className=" font-medium text-sm capitalize"
+                       className="text-white font-medium text-sm capitalize"
                      >
                        {field.label}
                      </label>
@@ -83,7 +83,7 @@ function Form() {
                      <div className="grid grid-cols-1">
                      <label
                        htmlFor={field.name}
-                       className=" font-medium text-sm capitalize"
+                       className="text-white font-medium text-sm capitalize"
                      >
                        {field.label}
                      </label>
@@ -113,7 +113,7 @@ function Form() {
                      <div>
                      <label
                        htmlFor={field.name}
-                       className=" font-medium text-sm capitalize"
+                       className=" text-white font-medium text-sm capitalize"
                      >
                        {field.label}
                      </label>

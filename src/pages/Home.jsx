@@ -3,6 +3,7 @@ import Title from '../components/Title'
 import { FormContext } from '../utils/context'
 import Form from '../components/Form'
 import Button from '../components/Button'
+import { Link } from 'react-router-dom'
 
 function Home() {
   return (
@@ -126,6 +127,17 @@ function Home() {
                             <option value='related'>Related</option>
                             <option value='not_related'>Not Related </option>
                         </select>
+                        <label htmlFor="Related/Not Related" className='font-serif text-black text-lg'>
+                            Employment Type
+                        </label>
+                        <select 
+                            className="border border-gray-300 bg-gray-100 text-sm w-60 px-3 py-2 focus:outline-none focus:border-gray-500"
+                        >
+                            <option >Select</option>
+                            <option value='full_time'>Full-Time</option>
+                            <option value='part_time'>Part Time</option>
+                            <option value='freelancer'>Freelancer</option>
+                        </select>
                         <label htmlFor="Email" className='font-serif text-black text-lg'>
                             Email
                         </label>
@@ -137,17 +149,6 @@ function Home() {
                             className="border border-gray-300 bg-gray-100 text-sm w-60 px-3 py-2 focus:outline-none focus:border-gray-500"
                             placeholder='Enter your Email'
                         />
-                        <label htmlFor="Contact Number" className='font-serif text-black text-lg'>
-                            Contact Number
-                        </label>
-                        <input
-                            required
-                            type='number'
-                            id='contact_number'
-                            name='contact_number'
-                            className="border border-gray-300 bg-gray-100 text-sm w-60 px-3 py-2 focus:outline-none focus:border-gray-500"
-                            placeholder='Enter your Contact Number'
-                        />
                         </div>
                     </div>
                     <div className='grid place-items-center justify-self-center w-96 mt-5 gap-2 col-span-3'>
@@ -157,7 +158,7 @@ function Home() {
                         >
                             Submit
                         </Button>
-                        <p className='text-md text-blue-600 hover:text-blue-300 cursor-pointer'>Want to login as admin?</p>
+                        <Link to="/login"><p className='text-md text-blue-600 hover:text-blue-300 cursor-pointer'>Want to login as admin?</p></Link>
                     </div>
                 </form>
             </div>

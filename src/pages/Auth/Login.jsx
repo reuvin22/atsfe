@@ -3,6 +3,7 @@ import { FormContext } from '../../utils/context'
 import Button from '../../components/Button'
 import { useRef, useState } from 'react'
 import Alert from '../../components/Alert'
+import { Link } from 'react-router-dom'
 
 function Login() {
     const formRef = useRef(null)
@@ -78,11 +79,11 @@ function Login() {
         <div className='w-96 h-54 grid place-items-center border-2 py-10 px-3 rounded-xl'>
             <FormContext.Provider value={{ 
             initialFields: testForm,
-            title: 'Admin Login'
+            title: 'Admin Login',
             }}>
             <Form />
             </FormContext.Provider>
-            <div className='flex items-center gap-5 mt-2 w-52'>
+            <div className='grid place-items-center gap-1 mt-2 w-52'>
                 <Button
                     bgColor='blue'
                     btnSize='fullWidth'
@@ -90,6 +91,7 @@ function Login() {
                 >
                     Login
                 </Button>
+                <Link to="/"><p className='text-md text-white hover:text-blue-300 cursor-pointer'>Back to form</p></Link>
             </div>
         </div>
       </div>

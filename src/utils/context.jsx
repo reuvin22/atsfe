@@ -13,5 +13,9 @@ export const TableContext = createContext({
     tableHeader: null
 })
 
+export const NavigationContext = createContext({
+    navigate: null
+})
 export const useFormContext = () => useContext(FormContext);
 export const useTableContext = () => useContext(TableContext);
+export const useNavigationContext = () => useContext(NavigationContext);
