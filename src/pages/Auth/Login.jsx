@@ -1,11 +1,14 @@
-import Form from '../Form'
+import Form from '../../components/Form'
 import { FormContext } from '../../utils/context'
-import Button from '../Button'
+import Button from '../../components/Button'
 import { useRef, useState } from 'react'
+import Alert from '../../components/Alert'
 
 function Login() {
     const formRef = useRef(null)
     const [action, setAction] = useState(false);
+    const [message, setMessage] = useState('');
+    const [alertOpen, setAlertOpen] = useState(false)
   const testForm = [
     {
       name: 'email',
@@ -57,9 +60,21 @@ function Login() {
     }
   }
   
+  const handleSubmit = () => {
+    setAlertOpen(true);
+    setMessage('Success');
+  }
+
+
   return (
     <>
       <div className='w-[100vw] h-[100vh] grid place-items-center bg-gradient-to-r from-slate-400 to-blue-500'>
+        {alertOpen && <Alert
+            bgColor='success' 
+            alertMessage={message}
+            propIsOpen={true}
+            btnColor='success'
+        />}
         <div className='w-96 h-54 grid place-items-center border-2 py-10 px-3 rounded-xl'>
             <FormContext.Provider value={{ 
             initialFields: testForm,
@@ -71,6 +86,7 @@ function Login() {
                 <Button
                     bgColor='blue'
                     btnSize='fullWidth'
+                    onClick={handleSubmit}
                 >
                     Login
                 </Button>

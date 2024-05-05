@@ -10,6 +10,7 @@ function Button({
     let bgColorChange;
     let iconChange = null;
     let btnSizeChange;
+    
     switch(bgColor){
         case 'blue':
             bgColorChange = "bg-blue-500 hover:bg-blue-600"
