@@ -37,24 +37,24 @@ function SideBar() {
             </div>
             <div className='grid place-items-center mt-20 text-center gap-10'>
                 <div>
-                    <h1 className='text-white font-bold text-xl font-serif cursor-pointer hover:text-blue-800'
+                    <button className='text-white font-bold text-xl font-serif cursor-pointer hover:text-blue-800'
                     onClick={(e) => handleChangeTab('dashboard')}
-                    >Dashboard</h1>
+                    >Dashboard</button>
                 </div>
                 <div>
-                    <h1 className='text-white font-bold text-xl font-serif cursor-pointer hover:text-blue-800'
+                    <button className='text-white font-bold text-xl font-serif cursor-pointer hover:text-blue-800'
                         onClick={(e) => handleChangeTab('alumni')}
-                    >List Of Alumni</h1>
+                    >List Of Alumni</button>
                 </div>
                 <div>
-                    <h1 className='text-white font-bold text-xl font-serif cursor-pointer hover:text-blue-800'
+                    <button className='text-white font-bold text-xl font-serif cursor-pointer hover:text-blue-800'
                     onClick={(e) => handleChangeTab('accounts')}
-                    >Accounts</h1>
+                    >Accounts</button>
                 </div>
                 <div>
-                    <h1 className='text-white font-bold text-xl font-serif cursor-pointer hover:text-blue-800'
+                    <button className='text-white font-bold text-xl font-serif cursor-pointer hover:text-blue-800'
                     onClick={(e) => handleChangeTab('logout')}
-                    >Logout</h1>
+                    >Logout</button>
                 </div>
             </div>
             
