@@ -3,7 +3,6 @@ import Cards from '../../components/Cards'
 import CanvasJSReact from '@canvasjs/react-charts';
 
 function Dashboard() {
-    var CanvasJS = CanvasJSReact.CanvasJS;
     var CanvasJSChart = CanvasJSReact.CanvasJSChart;
     const employmentType = {
         backgroundColor: "#cbd5e1",
@@ -33,7 +32,7 @@ function Dashboard() {
         data: [
         {
             // Change type to "doughnut", "line", "splineArea", etc.
-            type: "doughnut",
+            type: "column",
             dataPoints: [
                 { label: "Employed",  y: 10  },
                 { label: "Unemployed", y: 15  }
@@ -51,7 +50,7 @@ function Dashboard() {
         data: [
         {
             // Change type to "doughnut", "line", "splineArea", etc.
-            type: "doughnut",
+            type: "column",
             dataPoints: [
                 { label: "Related",  y: 45  },
                 { label: "Not Related", y: 100  }
