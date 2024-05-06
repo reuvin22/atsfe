@@ -6,7 +6,7 @@ export default {
   ],
   theme: {
     screens: {
-      'sm': {'min': '360px', 'max': '767px'},
+      'sm': {'min': '344px', 'max': '767px'},
       // => @media (min-width: 640px and max-width: 767px) { ... }
 
       'md': {'min': '768px', 'max': '1023px'},

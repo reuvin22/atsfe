@@ -5,9 +5,9 @@ import AdminPage from "./pages/AdminPage"
 
 function App() {
   return (
-    <div className="bg-slate-100 h-full">
+    <div>
       <Routes>
-        <Route path="/" element={<AdminPage />}/>
+        <Route path="/" element={<Home />}/>
         <Route path="/login" element={<Login />}/>
       </Routes>
     </div>
