@@ -3,13 +3,18 @@ import SideBar from '../components/SideBar'
 import Dashboard from './AdminPages/Dashboard'
 import AlumniList from './AdminPages/AlumniList'
 import Accounts from './AdminPages/Accounts'
+import { NavigationContext } from '../utils/context'
 function AdminPage() {
-  const [pages, setPages] = useState('');
+  const [pages, setPages] = useState('dashboard');
+
+  const handleTab = (tab) => {
+    setPages(tab)
+  }
+
   const renderPages = (pages) => {
     switch(pages){
       case 'dashboard':
         return <Dashboard />
-
       case 'alumni':
         return <AlumniList />
 
@@ -22,7 +27,13 @@ function AdminPage() {
   }
   return (
     <div className='flex h-full'>
-        <SideBar />
+      <NavigationContext.Provider
+            value={{ 
+              pages: null,
+              onChangeTab: (tab) => handleTab(tab)
+             }}>
+              <SideBar />
+      </NavigationContext.Provider>
         <div className='w-full'>
             {renderPages(pages)}
         </div>

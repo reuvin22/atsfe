@@ -14,7 +14,7 @@ export const TableContext = createContext({
 })
 
 export const NavigationContext = createContext({
-    navigate: null
+    onChangeTab: () => {}
 })
 export const useFormContext = () => useContext(FormContext);
 export const useTableContext = () => useContext(TableContext);

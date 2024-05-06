@@ -1,12 +1,18 @@
 import React, { useState } from 'react'
+import { useNavigationContext } from '../utils/context';
 
 function SideBar() {
+    const navigationContext = useNavigationContext();
     const [openSideBar, setOpenSideBar] = useState('false');
-
     const handleOnClick = () => {
         setOpenSideBar(!openSideBar);
     }
-    console.log(openSideBar)
+
+    const handleChangeTab = (tab) => {
+        navigationContext?.onChangeTab(tab)
+        console.log(tab)
+    }
+    
   return (
     <div>
         <div className='z-10 absolute w-14 h-14 ml-5 mt-5 md:hidden lg:hidden xl:hidden'>
@@ -31,16 +37,24 @@ function SideBar() {
             </div>
             <div className='grid place-items-center mt-20 text-center gap-10'>
                 <div>
-                    <h1 className='text-white font-bold text-xl font-serif cursor-pointer hover:text-blue-800'>Dashboard</h1>
+                    <h1 className='text-white font-bold text-xl font-serif cursor-pointer hover:text-blue-800'
+                    onClick={(e) => handleChangeTab('dashboard')}
+                    >Dashboard</h1>
                 </div>
                 <div>
-                    <h1 className='text-white font-bold text-xl font-serif cursor-pointer hover:text-blue-800'>List Of Alumni</h1>
+                    <h1 className='text-white font-bold text-xl font-serif cursor-pointer hover:text-blue-800'
+                        onClick={(e) => handleChangeTab('alumni')}
+                    >List Of Alumni</h1>
                 </div>
                 <div>
-                    <h1 className='text-white font-bold text-xl font-serif cursor-pointer hover:text-blue-800'>Accounts</h1>
+                    <h1 className='text-white font-bold text-xl font-serif cursor-pointer hover:text-blue-800'
+                    onClick={(e) => handleChangeTab('accounts')}
+                    >Accounts</h1>
                 </div>
                 <div>
-                    <h1 className='text-white font-bold text-xl font-serif cursor-pointer hover:text-blue-800'>Logout</h1>
+                    <h1 className='text-white font-bold text-xl font-serif cursor-pointer hover:text-blue-800'
+                    onClick={(e) => handleChangeTab('logout')}
+                    >Logout</h1>
                 </div>
             </div>
             
