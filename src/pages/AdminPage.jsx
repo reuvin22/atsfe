@@ -21,7 +21,7 @@ function AdminPage() {
     }
   }
   return (
-    <div className='flex'>
+    <div className='flex h-full'>
         <SideBar />
         <div className='w-full'>
             {renderPages(pages)}

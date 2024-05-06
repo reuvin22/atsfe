@@ -5,7 +5,7 @@ import CanvasJSReact from '../../canvasjs.react';
 function Dashboard() {
     var CanvasJSChart = CanvasJSReact.CanvasJSChart;
     const employmentType = {
-        backgroundColor: "#cbd5e1",
+        backgroundColor: "#f1f5f9",
         title: {
             text: "Employment Type"
         },
@@ -24,7 +24,7 @@ function Dashboard() {
     }
 
     const employmentStatus = {
-        backgroundColor: "#cbd5e1",
+        backgroundColor: "#f1f5f9",
         title: {
             text: "Employment Status"
         },
@@ -42,7 +42,7 @@ function Dashboard() {
     }
 
     const jobRelated = {
-        backgroundColor: "#cbd5e1",
+        backgroundColor: "#f1f5f9",
         title: {
             text: "Job Related"
         },
@@ -59,8 +59,8 @@ function Dashboard() {
         ]
     }
     return (
-        <div className='grid place-items-center'>
-            <div className='flex gap-5 justify-center items-center mt-10'>
+        <div className='grid place-items-center sm:h-full '>
+            <div className='flex gap-5 justify-center items-center mt-10 sm:grid md:grid'>
                 <Cards 
                     bgColor='green'
                     title="Total"
@@ -80,8 +80,8 @@ function Dashboard() {
                     imageLogo="https://firebasestorage.googleapis.com/v0/b/projectimages-a2f47.appspot.com/o/image-removebg-preview%20(4).png?alt=media&token=db636ea7-166d-4954-8b1d-d4375de3ab5e"
                 />
             </div>
-            <div className='flex w-full justify-center items-center mt-5 gap-5 py-10'>
-                <div className='h-full w-[60%]'>
+            <div className='flex w-full justify-center items-center mt-5 gap-5 py-10 sm:grid md:grid'>
+                <div className='h-full w-[60%] sm:w-full sm:h-96'>
                     <CanvasJSChart options = {employmentType} />
                 </div>
                 <div className='grid h-full w-52 gap-5'>
