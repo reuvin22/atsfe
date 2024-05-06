@@ -84,6 +84,7 @@ function Login() {
             <Form />
             </FormContext.Provider>
             <div className='grid place-items-center gap-1 mt-2 w-52'>
+              <Link to={'/dashboard'}>
                 <Button
                     bgColor='blue'
                     btnSize='fullWidth'
@@ -91,6 +92,7 @@ function Login() {
                 >
                     Login
                 </Button>
+                </Link>
                 <Link to="/"><p className='text-md text-white hover:text-blue-300 cursor-pointer'>Back to form</p></Link>
             </div>
         </div>
