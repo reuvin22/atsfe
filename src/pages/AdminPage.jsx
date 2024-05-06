@@ -4,6 +4,7 @@ import Dashboard from './AdminPages/Dashboard'
 import AlumniList from './AdminPages/AlumniList'
 import Accounts from './AdminPages/Accounts'
 import { NavigationContext } from '../utils/context'
+import Home from './Home'
 function AdminPage() {
   const [pages, setPages] = useState('dashboard');
 
@@ -15,11 +16,15 @@ function AdminPage() {
     switch(pages){
       case 'dashboard':
         return <Dashboard />
+        
       case 'alumni':
         return <AlumniList />
 
       case 'accounts':
         return <Accounts />
+
+      case 'logout':
+        return <Home />
 
       default:
         return <Dashboard />

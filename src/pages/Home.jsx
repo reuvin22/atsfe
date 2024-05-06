@@ -4,15 +4,24 @@ import { FormContext } from '../utils/context'
 import Form from '../components/Form'
 import Button from '../components/Button'
 import { Link } from 'react-router-dom'
+import { useCreateDataMutation } from '../services/alumniApi'
 
 function Home() {
+    const [createData] = useCreateDataMutation();
+
+    const handleSubmit = () => {
+        createData({
+            url: 'alumni',
+            actionType: 'alumni-data'
+        })
+    }
   return (
     <div>
         <Title />
         <div className='w-full grid place-items-center py-10 px-3 rounded-xl'>
             <h1 className='text-4xl text'>Student Information</h1>
             <div className='w-full h-96'>
-                <form>
+                <form onSubmit={handleSubmit}>
                     <div className='grid grid-cols-3 gap-3 place-items-center sm:grid-cols-1 mt-10'>
                         <input
                             required

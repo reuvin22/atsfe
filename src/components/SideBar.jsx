@@ -37,23 +37,23 @@ function SideBar() {
             </div>
             <div className='grid place-items-center mt-20 text-center gap-10'>
                 <div>
-                    <button className='text-white font-bold text-xl font-serif cursor-pointer hover:text-blue-800'
-                    onClick={(e) => handleChangeTab('dashboard')}
+                <button className='text-white font-bold text-xl font-serif cursor-pointer hover:bg-white h-10 w-full rounded-xl hover:text-blue-800 px-10 transition-all'
+                    onClick={() => handleChangeTab('dashboard')}
                     >Dashboard</button>
                 </div>
                 <div>
-                    <button className='text-white font-bold text-xl font-serif cursor-pointer hover:text-blue-800'
-                        onClick={(e) => handleChangeTab('alumni')}
+                    <button className='text-white font-bold text-xl font-serif cursor-pointer hover:bg-white h-10 w-full rounded-xl hover:text-blue-800 sm:px-5 px-10 transition-all'
+                        onClick={() => handleChangeTab('alumni')}
                     >List Of Alumni</button>
                 </div>
                 <div>
-                    <button className='text-white font-bold text-xl font-serif cursor-pointer hover:text-blue-800'
-                    onClick={(e) => handleChangeTab('accounts')}
+                <button className='text-white font-bold text-xl font-serif cursor-pointer hover:bg-white h-10 w-full rounded-xl hover:text-blue-800 px-10 transition-all'
+                    onClick={() => handleChangeTab('accounts')}
                     >Accounts</button>
                 </div>
                 <div>
-                    <button className='text-white font-bold text-xl font-serif cursor-pointer hover:text-blue-800'
-                    onClick={(e) => handleChangeTab('logout')}
+                <button className='text-white font-bold text-xl font-serif cursor-pointer hover:bg-white h-10 w-full rounded-xl hover:text-blue-800 px-10 transition-all'
+                    onClick={() => handleChangeTab('logout')}
                     >Logout</button>
                 </div>
             </div>
