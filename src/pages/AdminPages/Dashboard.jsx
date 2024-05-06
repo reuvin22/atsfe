@@ -1,6 +1,7 @@
 import React from 'react'
 import Cards from '../../components/Cards'
-import CanvasJSReact from '@canvasjs/react-charts'
+import CanvasJSReact from '@canvasjs/react-charts';
+
 function Dashboard() {
     var CanvasJS = CanvasJSReact.CanvasJS;
     var CanvasJSChart = CanvasJSReact.CanvasJSChart;
