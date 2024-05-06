@@ -32,7 +32,7 @@ function Dashboard() {
         data: [
         {
             // Change type to "doughnut", "line", "splineArea", etc.
-            type: "column",
+            type: "doughnut",
             dataPoints: [
                 { label: "Employed",  y: 10  },
                 { label: "Unemployed", y: 15  }
@@ -50,7 +50,7 @@ function Dashboard() {
         data: [
         {
             // Change type to "doughnut", "line", "splineArea", etc.
-            type: "column",
+            type: "doughnut",
             dataPoints: [
                 { label: "Related",  y: 45  },
                 { label: "Not Related", y: 100  }
