@@ -2,7 +2,7 @@ import React from 'react'
 
 function SideBar() {
   return (
-    <div className='h-full bg-blue-500 w-72 border sm:hidden'>
+    <div className='h-[100vh] bg-blue-500 w-72 border'>
         <div className='grid place-items-center mt-5 text-center'>
             <img 
             src="https://firebasestorage.googleapis.com/v0/b/projectimages-a2f47.appspot.com/o/image-removebg-preview.png?alt=media&token=11873b6c-6587-476d-ae69-611182c51b70" 

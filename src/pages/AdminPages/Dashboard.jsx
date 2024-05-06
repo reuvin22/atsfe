@@ -5,7 +5,7 @@ import CanvasJSReact from '../../canvasjs.react';
 function Dashboard() {
     var CanvasJSChart = CanvasJSReact.CanvasJSChart;
     const employmentType = {
-        backgroundColor: "#f1f5f9",
+        backgroundColor: "white",
         title: {
             text: "Employment Type"
         },
@@ -24,7 +24,7 @@ function Dashboard() {
     }
 
     const employmentStatus = {
-        backgroundColor: "#f1f5f9",
+        backgroundColor: "white",
         title: {
             text: "Employment Status"
         },
@@ -42,7 +42,7 @@ function Dashboard() {
     }
 
     const jobRelated = {
-        backgroundColor: "#f1f5f9",
+        backgroundColor: "white",
         title: {
             text: "Job Related"
         },

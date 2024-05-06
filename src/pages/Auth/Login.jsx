@@ -76,7 +76,8 @@ function Login() {
             propIsOpen={true}
             btnColor='success'
         />}
-        <div className='w-96 h-54 grid place-items-center border-2 py-10 px-3 rounded-xl'>
+        <div className='w-96 h-54 grid place-items-center border-2 py-10 px-3 rounded-xl
+        bg-blue-800 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20  border-gray-100 sm:w-full'>
             <FormContext.Provider value={{ 
             initialFields: testForm,
             title: 'Admin Login',
