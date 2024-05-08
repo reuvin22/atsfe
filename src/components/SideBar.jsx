@@ -1,9 +1,13 @@
 import React, { useState } from 'react'
 import { useNavigationContext } from '../utils/context';
+import { useLogoutMutation } from '../services/loginApi';
+import { useNavigate } from 'react-router-dom';
 
 function SideBar() {
     const navigationContext = useNavigationContext();
     const [openSideBar, setOpenSideBar] = useState('false');
+    const [logout] = useLogoutMutation();
+    const navigate = useNavigate()
     const handleOnClick = () => {
         setOpenSideBar(!openSideBar);
     }
@@ -13,6 +17,16 @@ function SideBar() {
         console.log(tab)
     }
     
+    const handleLogout = () => {
+        try {
+            logout();
+            navigate('/');
+            localStorage.removeItem('isLoggedIn')
+        } catch (error) {
+            console.error('Logout failed:', error);
+        }
+    };
+
   return (
     <div>
         <div className='z-10 absolute w-14 h-14 ml-5 mt-5 md:hidden lg:hidden xl:hidden'>
@@ -53,7 +67,7 @@ function SideBar() {
                 </div>
                 <div>
                 <button className='text-white font-bold text-xl font-serif cursor-pointer hover:bg-white h-10 w-full rounded-xl hover:text-blue-800 px-10 transition-all'
-                    onClick={() => handleChangeTab('logout')}
+                    onClick={() => handleLogout()}
                     >Logout</button>
                 </div>
             </div>

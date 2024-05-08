@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Title from '../components/Title'
 import { FormContext } from '../utils/context'
 import Form from '../components/Form'
@@ -8,13 +8,45 @@ import { useCreateDataMutation } from '../services/alumniApi'
 
 function Home() {
     const [createData] = useCreateDataMutation();
-
-    const handleSubmit = () => {
+    const initialFormData = {
+        fname: '',
+        mname: '',
+        lname: '',
+        gender: 'select',
+        civilStatus: 'select',
+        studentNumber: '',
+        course: '',
+        year: '',
+        employmentStatus: 'select',
+        relatedOrNot: 'select',
+        employmentType: 'select',
+        email: ''
+    };
+    const [formData, setFormData] = useState(initialFormData);
+    const handleSubmit = (e) => {
+        e.preventDefault();
         createData({
             url: 'alumni',
-            actionType: 'alumni-data'
+            actionType: 'alumni-data',
+            data: formData
+        })
+        .unwrap()
+        .then(response => {
+            if(response.status === "success"){
+                setFormData(initialFormData)
+            }
         })
     }
+    
+    console.log(formData)
+    const handleOnChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prevForm) => ({
+          ...prevForm,
+          [name]: value
+        }));
+      };
+
   return (
     <div>
         <Title />
@@ -28,6 +60,8 @@ function Home() {
                             type='text'
                             id='fname'
                             name='fname'
+                            value={formData.fname}
+                            onChange={handleOnChange}
                             className="border border-gray-300 bg-gray-100 text-sm w-60 px-3 py-2 focus:outline-none focus:border-gray-500"
                             placeholder='Enter your First Name'
                         />
@@ -36,6 +70,8 @@ function Home() {
                             type='text'
                             id='mname'
                             name='mname'
+                            value={formData.mname}
+                            onChange={handleOnChange}
                             className="border border-gray-300 bg-gray-100 text-sm w-60 px-3 py-2 focus:outline-none focus:border-gray-500"
                             placeholder='Enter your Middle Name'
                         />
@@ -44,29 +80,37 @@ function Home() {
                             type='text'
                             id='lname'
                             name='lname'
+                            value={formData.lname}
+                            onChange={handleOnChange}
                             className="border border-gray-300 bg-gray-100 text-sm w-60 px-3 py-2 focus:outline-none focus:border-gray-500"
                             placeholder='Enter your Last Name'
                         />
                         <select 
                             className="border border-gray-300 bg-gray-100 text-sm w-60 px-3 py-2 focus:outline-none focus:border-gray-500"
+                            onChange={handleOnChange}
+                            name='gender'
                         >
-                            <option value={null}>Select Gender</option>
-                            <option value='male'>Male</option>
-                            <option value='female'>Female</option>
+                            <option value='select'>Select Gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
                         </select>
                         <select 
                             className="border border-gray-300 bg-gray-100 text-sm w-60 px-3 py-2 focus:outline-none focus:border-gray-500"
+                            name='civilStatus'
+                            onChange={handleOnChange}
                         >
-                            <option value={null}>Select Civil Status</option>
-                            <option value='single'>Single</option>
-                            <option value='married'>Married</option>
-                            <option value='divorced'>Divorced</option>
+                            <option value='select'>Select Civil Status</option>
+                            <option value="Single">Single</option>
+                            <option value="Married">Married</option>
+                            <option value="Divorced">Divorced</option>
                         </select>
                         <input
                             required
                             type='text'
-                            id='student_number'
-                            name='student_number'
+                            id='studentNumber'
+                            name='studentNumber'
+                            value={formData.studentNumber}
+                            onChange={handleOnChange}
                             className="border border-gray-300 bg-gray-100 text-sm w-60 px-3 py-2 focus:outline-none focus:border-gray-500"
                             placeholder='Enter your Student Number (0123-4567-8900)'
                         />
@@ -75,6 +119,8 @@ function Home() {
                             type='text'
                             id='course'
                             name='course'
+                            value={formData.course}
+                            onChange={handleOnChange}
                             className="border border-gray-300 bg-gray-100 text-sm w-60 px-3 py-2 focus:outline-none focus:border-gray-500"
                             placeholder='Enter your Course'
                         />
@@ -83,37 +129,47 @@ function Home() {
                             type='number'
                             id='year'
                             name='year'
+                            value={formData.year}
+                            onChange={handleOnChange}
                             className="border border-gray-300 bg-gray-100 text-sm w-60 px-3 py-2 focus:outline-none focus:border-gray-500"
                             placeholder='Year Graduated'
                         />
                         <select 
                             className="border border-gray-300 bg-gray-100 text-sm w-60 px-3 py-2 focus:outline-none focus:border-gray-500"
                             required
+                            onChange={handleOnChange}
+                            name='employmentStatus'
                         >
-                            <option>Select Employment Status</option>
-                            <option value='employed'>Employed</option>
-                            <option value='unemployed'>Unemployed</option>
+                            <option value='select'>Select Employment Status</option>
+                            <option value="Employed">Employed</option>
+                            <option value="Unemployed">Unemployed</option>
                         </select>
                         <select 
                             className="border border-gray-300 bg-gray-100 text-sm w-60 px-3 py-2 focus:outline-none focus:border-gray-500"
+                            name='relatedOrNot'
+                            onChange={handleOnChange}
                         >
-                            <option>Job Related or Not</option>
-                            <option value='related'>Related</option>
-                            <option value='not_related'>Not Related </option>
+                            <option value='select'>Job Related or Not</option>
+                            <option value="Related">Related</option>
+                            <option value="Not Related">Not Related </option>
                         </select>
                         <select 
                             className="border border-gray-300 bg-gray-100 text-sm w-60 px-3 py-2 focus:outline-none focus:border-gray-500"
+                            onChange={handleOnChange}
+                            name='employmentType'
                         >
-                            <option>Select Employment Type</option>
-                            <option value='full_time'>Full-Time</option>
-                            <option value='part_time'>Part Time</option>
-                            <option value='freelancer'>Freelancer</option>
+                            <option value='select'>Select Employment Type</option>
+                            <option value="Full Time">Full-Time</option>
+                            <option value="Part Time">Part Time</option>
+                            <option value="Freelancer">Freelancer</option>
                         </select>
                         <input
                             required
                             type='email'
                             id='email'
                             name='email'
+                            value={formData.email}
+                            onChange={handleOnChange}
                             className="border border-gray-300 bg-gray-100 text-sm w-60 px-3 py-2 focus:outline-none focus:border-gray-500"
                             placeholder='Enter your Email'
                         />
@@ -122,6 +178,7 @@ function Home() {
                         <Button
                             bgColor='blue'
                             btnSize='normalSize'
+                            typeBtn='submit'
                         >
                             Submit
                         </Button>

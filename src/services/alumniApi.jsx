@@ -1,9 +1,9 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import Cookies from "js-cookie";
 export const alumniApi = createApi({
-    reducerPath: 'alumniFormApi',
+    reducerPath: 'alumniApi',
     baseQuery: fetchBaseQuery({
-        baseUrl: 'localhost:8000/api',
+        baseUrl: 'http://127.0.0.1:8000/api/',
         prepareHeaders: (headers) => {
             const token = Cookies.get('token');
             if(token){
@@ -11,23 +11,59 @@ export const alumniApi = createApi({
             }
         }
     }),
-    tagTypes: ['AlumniForm'],
+    tagTypes: ['AlumniForm', 'AlumniData', 'UserData'],
     endpoints: (builder) => ({
         createData: builder.mutation({
             query:(args) => {
-                const session = Cookies.get('session');
                 const {data, url, actionType} = args;
                 return {
                     url: `/${url}`,
-                    data: data,
-                    actionType: actionType
+                    method: 'POST',
+                    body: {
+                        data,
+                        actionType
+                    }
                 }
             },
             invalidatesTags: ['AlumniForm']
         }),
+
+        getAlumniData: builder.query({
+            query: (args) => {
+                const {items, page} = args;
+                return {
+                    url: `alumni-list`,
+                    method: 'GET',
+                    params: {
+                        tab: 'tab2',
+                        items,
+                        page
+                    }
+                }
+            },
+            invalidatesTags: ['AlumniData']
+        }),
+
+        getUserData: builder.query({
+            query: (args) => {
+                const {items, page} = args;
+                return {
+                    url: `users`,
+                    method: 'GET',
+                    params: {
+                        tab: 'tab3',
+                        items,
+                        page
+                    }
+                }
+            },
+            invalidatesTags: ['UserData']
+        })
     })
 })
 
 export const {
-    useCreateDataMutation
+    useCreateDataMutation,
+    useGetAlumniDataQuery,
+    useGetUserDataQuery
 } = alumniApi;

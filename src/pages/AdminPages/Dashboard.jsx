@@ -1,8 +1,16 @@
 import React from 'react'
 import Cards from '../../components/Cards'
 import CanvasJSReact from '../../canvasjs.react';
+import { useGetAlumniDataQuery } from '../../services/alumniApi';
 
 function Dashboard() {
+    const {
+        data: alumniCount
+    } = useGetAlumniDataQuery({
+        url: 'alumni',
+        tab: 'tab1'
+    })
+
     var CanvasJSChart = CanvasJSReact.CanvasJSChart;
     const employmentType = {
         backgroundColor: "white",
@@ -64,19 +72,19 @@ function Dashboard() {
                 <Cards 
                     bgColor='green'
                     title="Total"
-                    count="20"
+                    count={alumniCount?.data?.total_students}
                     imageLogo="https://firebasestorage.googleapis.com/v0/b/projectimages-a2f47.appspot.com/o/image-removebg-preview%20(1).png?alt=media&token=8a4ff95b-cc9b-47df-a1ce-668e26eb0800"
                 />
                 <Cards 
                     bgColor='blue'
                     title="Male"
-                    count="10"
+                    count={alumniCount?.data?.male}
                     imageLogo="https://firebasestorage.googleapis.com/v0/b/projectimages-a2f47.appspot.com/o/image-removebg-preview%20(3).png?alt=media&token=3b8c50c3-dcd2-4527-a67d-b5b265f42d7b"
                 />
                 <Cards 
                     bgColor='red'
                     title="Female"
-                    count="10"
+                    count={alumniCount?.data?.female}
                     imageLogo="https://firebasestorage.googleapis.com/v0/b/projectimages-a2f47.appspot.com/o/image-removebg-preview%20(4).png?alt=media&token=db636ea7-166d-4954-8b1d-d4375de3ab5e"
                 />
             </div>

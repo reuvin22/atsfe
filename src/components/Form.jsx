@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import { useFormContext } from '../utils/context'
+import { useLoginMutation } from '../services/loginApi';
 
 function Form() {
     const context = useFormContext()
     const initialFields = []
     const [modalState, setModalState] = useState(false);
-
+    const [formData, setFormData] = useState({});
+    const [login] = useLoginMutation();
     const handleModal = (data) => {
         switch(data.type){
             case 'openModal':
@@ -13,8 +15,16 @@ function Form() {
             break;
         }
     }
-    const handleSubmit = (data) => {
-        
+    const handleInputChange = () => {
+      const {name, value} = e.target
+      setFormData(prev => ({
+        ...prev,
+        [name]:value
+      }))
+    }
+
+    const handleSubmit = () => {
+      
     }
     const renderForm = (row, rowIndex) => {
         return context?.initialFields?.map(field => (
@@ -32,18 +42,8 @@ function Form() {
                        type={field.type}
                        id={field.name}
                        name={field.name}
-                    //    value={row.fields[field.name]}
-                    //    onChange={(e) => handleInputChange(e, rowIndex, field.name)}
-                    //    onClick={
-                    //      field.category === 'with_modal'
-                    //        ? () =>
-                    //            handleOnClick({
-                    //              action: 'clickedModal',
-                    //              field,
-                    //              modalState: true
-                    //            })
-                    //        : undefined
-                    //    }
+                       value={row.fields[field.name]}
+                       onChange={(e) => handleInputChange()}
                        className="border border-gray-300 bg-gray-100 text-sm w-full px-3 py-2 focus:outline-none focus:border-gray-500 mb-2"
                        placeholder={field.placeholder}
                      />

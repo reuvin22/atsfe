@@ -5,7 +5,8 @@ function Button({
     bgColor,
     btnIcon,
     btnSize,
-    onClick
+    onClick,
+    typeBtn
 }) {
     let bgColorChange;
     let iconChange = null;
@@ -18,6 +19,9 @@ function Button({
         case 'red':
             bgColorChange = "bg-red-500 hover:bg-red-600"
         break;
+        case 'green':
+            bgColorChange = "bg-green-500 hover:bg-green-600"
+        break;
         default:
             bgColorChange = "bg-blue-500 hover:bg-blue-600"
         break;
@@ -27,9 +31,13 @@ function Button({
         case 'fullWidth':
             btnSizeChange = "w-[100%]"
         break;
-        
+
         case 'normalSize':
             btnSizeChange = "w-24"
+        break;
+
+        case 'actionBtn':
+            btnSizeChange = "w-10"
         break;
         default:
 
@@ -60,7 +68,7 @@ function Button({
             iconChange = (
                 <svg
                     fill="none"
-                    className="h-4 w-4"
+                    className="h-6 w-6"
                     stroke="currentColor"
                     strokeWidth={1.5}
                     viewBox="0 0 24 24"
@@ -76,6 +84,11 @@ function Button({
               );
         break;
 
+        case 'delete':
+            iconChange = (
+                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 24 24"> <path d="M 10 2 L 9 3 L 3 3 L 3 5 L 4.109375 5 L 5.8925781 20.255859 L 5.8925781 20.263672 C 6.023602 21.250335 6.8803207 22 7.875 22 L 16.123047 22 C 17.117726 22 17.974445 21.250322 18.105469 20.263672 L 18.107422 20.255859 L 19.890625 5 L 21 5 L 21 3 L 15 3 L 14 2 L 10 2 z M 6.125 5 L 17.875 5 L 16.123047 20 L 7.875 20 L 6.125 5 z"></path> </svg>
+            )
+        break
         default:
         break;
     }
@@ -83,6 +96,7 @@ function Button({
     <button
         className={`flex justify-center items-center text-white px-2 text-sm gap-2 rounded h-8 ${btnSizeChange} ${bgColorChange} focus:outline-none`}
         onClick={onClick}
+        type={typeBtn}
     > 
     {iconChange}
     {children}
