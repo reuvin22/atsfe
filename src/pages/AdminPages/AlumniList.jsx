@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { TableContext } from '../../utils/context';
 import Table from '../../components/Table';
-import { useGetAlumniDataQuery } from '../../services/alumniApi';
+import { useDeleteDataMutation, useGetAlumniDataQuery } from '../../services/alumniApi';
 import Pagination from '../../components/Pagination';
 import ItemPerPage from '../../components/ItemPerPage';
+import Button from '../../components/Button';
 
 function AlumniList() {
   const [currentPage, setCurrentPage] = useState(1)
@@ -12,13 +13,14 @@ function AlumniList() {
     data: alumniList
   } = useGetAlumniDataQuery({
     items: itemPerPage,
-    page: currentPage
+    page: currentPage,
+    tab: 'tab2'
   })
+
   const header = alumniList?.columns ?? []
   const list = alumniList?.data ?? []
   const page = alumniList?.pagination ?? []
 
-  console.log(alumniList)
   const handleItemsPerPageChange = (e) => {
     setItemsPerPage(e.target.value);
   };
@@ -30,8 +32,8 @@ function AlumniList() {
   return (
     <div className='w-full h-full grid place-items-center sm:h-[100vh]'>
       <div className='grid place-items-center gap-5'>
-        <h1 className='text-4xl font-bold text-black'>Alumni List</h1>
-      <div className='w-[80%] min-h-62 overflow-x-scroll border-2rounded-xl'>
+        <h1 className='text-4xl font-bold text-black sm-text-sm'>Alumni List</h1>
+      <div className='w-[90%] border-2 rounded-lg min-h-62 overflow-x-scroll border-2rounded-xl'>
         <TableContext.Provider
           value={{ 
             tableData: list,

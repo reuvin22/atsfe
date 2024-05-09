@@ -5,7 +5,7 @@ import Form from '../components/Form'
 import Button from '../components/Button'
 import { Link } from 'react-router-dom'
 import { useCreateDataMutation } from '../services/alumniApi'
-
+import { toast } from 'react-toastify'
 function Home() {
     const [createData] = useCreateDataMutation();
     const initialFormData = {
@@ -23,6 +23,7 @@ function Home() {
         email: ''
     };
     const [formData, setFormData] = useState(initialFormData);
+    const notify = () => toast.success("Data Inserted Successfully")
     const handleSubmit = (e) => {
         e.preventDefault();
         createData({
@@ -34,11 +35,11 @@ function Home() {
         .then(response => {
             if(response.status === "success"){
                 setFormData(initialFormData)
+                notify()
             }
         })
     }
     
-    console.log(formData)
     const handleOnChange = (e) => {
         const { name, value } = e.target;
         setFormData((prevForm) => ({

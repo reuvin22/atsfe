@@ -6,7 +6,8 @@ function Button({
     btnIcon,
     btnSize,
     onClick,
-    typeBtn
+    typeBtn,
+    display
 }) {
     let bgColorChange;
     let iconChange = null;
@@ -94,7 +95,7 @@ function Button({
     }
   return (
     <button
-        className={`flex justify-center items-center text-white px-2 text-sm gap-2 rounded h-8 ${btnSizeChange} ${bgColorChange} focus:outline-none`}
+        className={`flex justify-center items-center text-white px-2 text-sm gap-2 rounded h-8 ${btnSizeChange} ${bgColorChange} ${display} focus:outline-none`}
         onClick={onClick}
         type={typeBtn}
     > 

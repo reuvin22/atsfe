@@ -21,7 +21,7 @@ function SideBar() {
         try {
             logout();
             navigate('/');
-            localStorage.removeItem('isLoggedIn')
+            localStorage.clear()
         } catch (error) {
             console.error('Logout failed:', error);
         }
@@ -46,8 +46,8 @@ function SideBar() {
                 alt="School Logo" 
                 className='w-36'
                 />
-                <h1 className='text-white font-bold text-xl font-serif mt-5'>Reuvin Hernandez</h1>
-                <h1 className='text-white font-bold text-xl font-serif'>Admin</h1>
+                <h1 className='text-white font-bold text-xl font-serif mt-5'>{`${localStorage.getItem('fname')} ${localStorage.getItem('lname')}`}</h1>
+                <h1 className='text-white font-bold text-xl font-serif'>{localStorage.getItem('role')}</h1>
             </div>
             <div className='grid place-items-center mt-20 text-center gap-10'>
                 <div>
@@ -60,11 +60,13 @@ function SideBar() {
                         onClick={() => handleChangeTab('alumni')}
                     >List Of Alumni</button>
                 </div>
-                <div>
-                <button className='text-white font-bold text-xl font-serif cursor-pointer hover:bg-white h-10 w-full rounded-xl hover:text-blue-800 px-10 transition-all'
-                    onClick={() => handleChangeTab('accounts')}
-                    >Accounts</button>
-                </div>
+                {localStorage.getItem('role') === 'Admin' && (
+                    <div>
+                    <button className='text-white font-bold text-xl font-serif cursor-pointer hover:bg-white h-10 w-full rounded-xl hover:text-blue-800 px-10 transition-all'
+                        onClick={() => handleChangeTab('accounts')}
+                        >Accounts</button>
+                    </div>
+                )}
                 <div>
                 <button className='text-white font-bold text-xl font-serif cursor-pointer hover:bg-white h-10 w-full rounded-xl hover:text-blue-800 px-10 transition-all'
                     onClick={() => handleLogout()}

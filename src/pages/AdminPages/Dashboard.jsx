@@ -11,6 +11,7 @@ function Dashboard() {
         tab: 'tab1'
     })
 
+    console.log(alumniCount)
     var CanvasJSChart = CanvasJSReact.CanvasJSChart;
     const employmentType = {
         backgroundColor: "white",
@@ -23,9 +24,9 @@ function Dashboard() {
             // Change type to "doughnut", "line", "splineArea", etc.
             type: "column",
             dataPoints: [
-                { label: "Full Time",  y: 10  },
-                { label: "Part Time", y: 15  },
-                { label: "Freelancer", y: 25  }
+                { label: "Full Time",  y: alumniCount?.data?.full_time  },
+                { label: "Part Time", y: alumniCount?.data?.part_time  },
+                { label: "Freelancer", y: alumniCount?.data?.freelancer  }
             ]
         }
         ]
@@ -42,8 +43,8 @@ function Dashboard() {
             // Change type to "doughnut", "line", "splineArea", etc.
             type: "doughnut",
             dataPoints: [
-                { label: "Employed",  y: 10  },
-                { label: "Unemployed", y: 15  }
+                { label: "Employed",  y: alumniCount?.data?.employed  },
+                { label: "Unemployed", y: alumniCount?.data?.unemployed  }
             ]
         }
         ]
@@ -60,8 +61,8 @@ function Dashboard() {
             // Change type to "doughnut", "line", "splineArea", etc.
             type: "doughnut",
             dataPoints: [
-                { label: "Related",  y: 45  },
-                { label: "Not Related", y: 100  }
+                { label: "Related",  y: alumniCount?.data?.related },
+                { label: "Not Related", y: alumniCount?.data?.not_related  }
             ]
         }
         ]

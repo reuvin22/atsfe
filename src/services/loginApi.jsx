@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import Cookies from "js-cookie";
+import { useState } from "react";
 
 export const loginAPI = createApi({
     reducerPath: 'loginAPI',
@@ -11,7 +12,7 @@ export const loginAPI = createApi({
               headers.set('authorization', `Bearer ${token}`);
               return headers;
             }else {
-                console.log('No Token')
+                localStorage.setItem('error', 'Wrong email or password')
             }
           }
     }),

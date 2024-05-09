@@ -1,20 +1,14 @@
-import React, { useState } from 'react'
+import React, { forwardRef, useImperativeHandle, useState } from 'react'
 import { useFormContext } from '../utils/context'
 import { useLoginMutation } from '../services/loginApi';
 
-function Form() {
+const Form = forwardRef(
+  ({ initialFields = [], loginBtn, onClick, style }, ref) => {
     const context = useFormContext()
-    const initialFields = []
     const [modalState, setModalState] = useState(false);
     const [formData, setFormData] = useState({});
     const [login] = useLoginMutation();
-    const handleModal = (data) => {
-        switch(data.type){
-            case 'openModal':
-                context?.onModalState('true');
-            break;
-        }
-    }
+
     const handleInputChange = () => {
       const {name, value} = e.target
       setFormData(prev => ({
@@ -23,9 +17,16 @@ function Form() {
       }))
     }
 
-    const handleSubmit = () => {
-      
-    }
+    useImperativeHandle(context?.ref, () => ({
+      handleSubmit: (actionType) => handleSubmit(actionType)
+    }));
+
+    const handleSubmit = (e) => {
+      e.preventDefault(); // Prevent default form submission
+      if (context && context.handleSubmit) {
+        context.handleSubmit(formData); // Invoke handleSubmit function from context
+      }
+    };
     const renderForm = (row, rowIndex) => {
         return context?.initialFields?.map(field => (
             <div key={field.name} className={`${context?.fontColor}`}>
@@ -38,15 +39,15 @@ function Form() {
                        {field.label}
                      </label>
                      <input
-                       required
-                       type={field.type}
-                       id={field.name}
-                       name={field.name}
-                       value={row.fields[field.name]}
-                       onChange={(e) => handleInputChange()}
-                       className="border border-gray-300 bg-gray-100 text-sm w-full px-3 py-2 focus:outline-none focus:border-gray-500 mb-2"
-                       placeholder={field.placeholder}
-                     />
+                      required
+                      type={field.type}
+                      id={field.name}
+                      name={field.name}
+                      value={formData[field.name]}
+                      onChange={handleInputChange}
+                      className="border border-gray-300 bg-gray-100 text-sm w-full px-3 py-2 focus:outline-none focus:border-gray-500 mb-2"
+                      placeholder={field.placeholder}
+                    />
                    </div>
                 )}
                 {field.type === 'number' && !field.disabled && (
@@ -58,25 +59,15 @@ function Form() {
                        {field.label}
                      </label>
                      <input
-                       required
-                       type={field.type}
-                       id={field.name}
-                       name={field.name}
-                    //    value={row.fields[field.name]}
-                    //    onChange={(e) => handleInputChange(e, rowIndex, field.name)}
-                    //    onClick={
-                    //      field.category === 'with_modal'
-                    //        ? () =>
-                    //            handleOnClick({
-                    //              action: 'clickedModal',
-                    //              field,
-                    //              modalState: true
-                    //            })
-                    //        : undefined
-                    //    }
-                       className="border border-gray-300 bg-gray-100 text-sm w-full px-3 py-2 focus:outline-none focus:border-gray-500 mb-2"
-                       placeholder={field.placeholder}
-                     />
+                        required
+                        type={field.type}
+                        id={field.name}
+                        name={field.name}
+                        value={formData[field.name]}
+                        onChange={handleInputChange}
+                        className="border border-gray-300 bg-gray-100 text-sm w-full px-3 py-2 focus:outline-none focus:border-gray-500 mb-2"
+                        placeholder={field.placeholder}
+                    />
                    </div>
                 )}
                 {field.type === 'password' && !field.disabled && (
@@ -87,26 +78,16 @@ function Form() {
                      >
                        {field.label}
                      </label>
-                     <input
-                       required
-                       type={field.type}
-                       id={field.name}
-                       name={field.name}
-                    //    value={row.fields[field.name]}
-                    //    onChange={(e) => handleInputChange(e, rowIndex, field.name)}
-                    //    onClick={
-                    //      field.category === 'with_modal'
-                    //        ? () =>
-                    //            handleOnClick({
-                    //              action: 'clickedModal',
-                    //              field,
-                    //              modalState: true
-                    //            })
-                    //        : undefined
-                    //    }
-                       className="border border-gray-300 bg-gray-100 text-sm w-full px-3 py-2 focus:outline-none focus:border-gray-500 mb-2"
-                       placeholder={field.placeholder}
-                     />
+                      <input
+                        required
+                        type={field.type}
+                        id={field.name}
+                        name={field.name}
+                        value={formData[field.name]}
+                        onChange={handleInputChange}
+                        className="border border-gray-300 bg-gray-100 text-sm w-full px-3 py-2 focus:outline-none focus:border-gray-500 mb-2"
+                        placeholder={field.placeholder}
+                      />
                    </div>
                 )}
                 {field.type === 'email' && !field.disabled && (
@@ -118,25 +99,32 @@ function Form() {
                        {field.label}
                      </label>
                      <input
-                       required
-                       type={field.type}
-                       id={field.name}
-                       name={field.name}
-                    //    value={row.fields[field.name]}
-                    //    onChange={(e) => handleInputChange(e, rowIndex, field.name)}
-                    //    onClick={
-                    //      field.category === 'with_modal'
-                    //        ? () =>
-                    //            handleOnClick({
-                    //              action: 'clickedModal',
-                    //              field,
-                    //              modalState: true
-                    //            })
-                    //        : undefined
-                    //    }
-                       className="border border-gray-300 bg-gray-100 text-sm w-full px-3 py-2 focus:outline-none focus:border-gray-500 mb-2"
-                       placeholder={field.placeholder}
-                     />
+                      required
+                      type={field.type}
+                      id={field.name}
+                      name={field.name}
+                      value={formData[field.name]}
+                      onChange={handleInputChange}
+                      className="border border-gray-300 bg-gray-100 text-sm w-full px-3 py-2 focus:outline-none focus:border-gray-500 mb-2"
+                      placeholder={field.placeholder}
+                    />
+                   </div>
+                )}
+                {field.type === 'select' && !field.disabled && (
+                     <div className='grid gap-1'>
+                     <label
+                       htmlFor={field.name}
+                       className=" text-white font-medium text-sm capitalize"
+                     >
+                       {field.label}
+                     </label>
+                     <select name={field.name} className='border border-gray-300 bg-gray-100 text-sm w-full px-3 py-2 focus:outline-none focus:border-gray-500 mb-2'>
+                        {field.options.map((option, optionIndex) => (
+                            <option key={optionIndex} value={option}>
+                                {option}
+                            </option>
+                        ))}
+                      </select>
                    </div>
                 )}
             </div>
@@ -155,5 +143,5 @@ function Form() {
     </div>
   )
 }
-
+)
 export default Form

@@ -25,17 +25,31 @@ export const alumniApi = createApi({
                     }
                 }
             },
-            invalidatesTags: ['AlumniForm']
+            invalidatesTags: ['AlumniForm', 'UserData']
+        }),
+
+        deleteData: builder.mutation({
+            query:(args) => {
+                const {actionType, id, url} = args;
+                return {
+                    url: `/delete-alumni-list/${id}`,
+                    method: 'DELETE',
+                    body: {
+                        actionType
+                    }
+                }
+            },
+            invalidatesTags: ['AlumniForm', 'UserData', 'AlumniList']
         }),
 
         getAlumniData: builder.query({
             query: (args) => {
-                const {items, page} = args;
+                const {items, page, tab} = args;
                 return {
                     url: `alumni-list`,
                     method: 'GET',
                     params: {
-                        tab: 'tab2',
+                        tab,
                         items,
                         page
                     }
@@ -65,5 +79,6 @@ export const alumniApi = createApi({
 export const {
     useCreateDataMutation,
     useGetAlumniDataQuery,
-    useGetUserDataQuery
+    useGetUserDataQuery,
+    useDeleteDataMutation
 } = alumniApi;
