@@ -76,7 +76,7 @@ function Accounts() {
                 </>
             );
         case 'update':
-            // Implement update form
+            
             break;
         default:
             return null;
