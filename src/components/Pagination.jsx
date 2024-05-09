@@ -4,7 +4,6 @@ function Pagination({ currentPage, totalPages, onPageChange }) {
   
     const handlePageChange = (newPage) => {
       if (newPage >= 1 && newPage <= totalPages) {
-        // console.log(newPage)
         onPageChange(newPage);
       }
     };
@@ -47,7 +46,6 @@ function Pagination({ currentPage, totalPages, onPageChange }) {
                 1
               </button>
             </li>
-            {/* {console.log(currentPage)} */}
             {currentPage > 3 && <li className="self-center mx-2">...</li>}
   
             {[currentPage - 1, currentPage, currentPage + 1]

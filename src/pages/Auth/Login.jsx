@@ -27,7 +27,6 @@ function Login() {
   }
 
   const notifyError = () => toast.error("Wrong Email or Password")
-  console.log(user);
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {

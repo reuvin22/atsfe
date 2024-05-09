@@ -11,7 +11,6 @@ function Dashboard() {
         tab: 'tab1'
     })
 
-    console.log(alumniCount)
     var CanvasJSChart = CanvasJSReact.CanvasJSChart;
     const employmentType = {
         backgroundColor: "white",

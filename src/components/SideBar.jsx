@@ -14,7 +14,6 @@ function SideBar() {
 
     const handleChangeTab = (tab) => {
         navigationContext?.onChangeTab(tab)
-        console.log(tab)
     }
     
     const handleLogout = () => {
