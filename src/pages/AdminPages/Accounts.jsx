@@ -20,7 +20,7 @@ function Accounts() {
     items: itemPerPage,
     page: currentPage
   })
-  const [userRegistration] = useCreateDataMutation()
+
   const header = userList?.columns ?? []
   const list = userList?.data ?? []
   const page = userList?.pagination ?? []
@@ -38,13 +38,10 @@ function Accounts() {
   }
   
 
-  const handleSubmitForm = (formData) => {
-    userRegistration.mutate({
-      url: 'user-registration',
-      data: formData,
-      actionType: 'user-registration',
-    });
+  const handleSubmitForm = (actionType) => {
+    formRef.current.handleSubmit(actionType)
   };
+
   const handleFormOpen = (data) => {
     switch (data.type) {
         case 'user-register':
@@ -64,7 +61,7 @@ function Accounts() {
                         <Button 
                           bgColor='green' 
                           btnSize='normalSize'
-                          onClick={() => handleSubmitButton('register')}
+                          onClick={() => handleSubmitForm('user-registration')}
                         >
                             Register
                         </Button>
@@ -78,9 +75,6 @@ function Accounts() {
                     </div>
                 </>
             );
-        case 'delete':
-            // Implement delete form
-            break;
         case 'update':
             // Implement update form
             break;
@@ -90,6 +84,24 @@ function Accounts() {
 };
 
 const registrationForm = [
+  {
+    name: 'fname',
+    type: 'text',
+    label: 'First Name',
+    placeholder: 'Enter Your First Name'
+  }, 
+  {
+    name: 'mname',
+    type: 'text',
+    label: 'Middle Name',
+    placeholder: 'Enter Your Middle Name'
+  }, 
+  {
+    name: 'lname',
+    type: 'text',
+    label: 'Last Name',
+    placeholder: 'Enter Your Last Name'
+  },  
     {
         name: 'email',
         type: 'email',
@@ -112,13 +124,13 @@ const registrationForm = [
         name: 'role',
         type: 'select',
         label: 'Role',
-        options: ['Admin', 'Staff']
+        options: ['Select', 'Admin', 'Staff']
     }
 ];
 
   return (
     <div className='w-full h-full grid place-items-center sm:h-[100vh]'>
-      <div className={formOpen ? 'w-96 h-96 absolute bg-blue-500 px-5 rounded-xl py-2' : 'hidden'}>
+      <div className={formOpen ? 'w-96 sm:max-w-[90%] sm:z-10 max-h-98 absolute bg-blue-500 px-5 rounded-xl py-10' : 'hidden'}>
             {handleFormOpen({type: modalType})}
         </div>
       <div className='grid place-items-center gap-5'>
@@ -132,7 +144,7 @@ const registrationForm = [
               Add
             </Button>
         </div>
-      <div className='w-full border-2 rounded-lg min-h-62 overflow-x-scroll border-2rounded-xl'>
+      <div className='w-full max-h-[700px] border-2 rounded-lg min-h-62 overflow-x-scroll sm:max-h-96'>
         <TableContext.Provider
           value={{ 
             tableData: list,

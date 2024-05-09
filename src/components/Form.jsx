@@ -1,15 +1,14 @@
-import React, { forwardRef, useImperativeHandle, useState } from 'react'
+import React, { forwardRef, useEffect, useImperativeHandle, useState } from 'react'
 import { useFormContext } from '../utils/context'
 import { useLoginMutation } from '../services/loginApi';
+import { useCreateDataMutation } from '../services/alumniApi';
+import { toast } from 'react-toastify';
 
-const Form = forwardRef(
-  ({ initialFields = [], loginBtn, onClick, style }, ref) => {
+const Form = (ref => {
     const context = useFormContext()
-    const [modalState, setModalState] = useState(false);
     const [formData, setFormData] = useState({});
-    const [login] = useLoginMutation();
-
-    const handleInputChange = () => {
+    const [createData] = useCreateDataMutation()
+    const handleInputChange = (e) => {
       const {name, value} = e.target
       setFormData(prev => ({
         ...prev,
@@ -21,12 +20,26 @@ const Form = forwardRef(
       handleSubmit: (actionType) => handleSubmit(actionType)
     }));
 
-    const handleSubmit = (e) => {
-      e.preventDefault(); // Prevent default form submission
-      if (context && context.handleSubmit) {
-        context.handleSubmit(formData); // Invoke handleSubmit function from context
-      }
-    };
+    const handleSubmit = (actionType) => {
+          createData({
+            url: 'register',
+            data: formData,
+            actionType
+          }).then(res => {
+            if(res.data.status === "success"){
+              toast.success("Data Inserted Successfully")
+              setFormData(Object.fromEntries(
+                Object.entries(formData).map(([key]) => [key, ''])
+              ));
+
+            }
+          })
+          if(formData.role === 'Select'){
+            toast.error("Select is not an Option")
+          }
+
+    }
+
     const renderForm = (row, rowIndex) => {
         return context?.initialFields?.map(field => (
             <div key={field.name} className={`${context?.fontColor}`}>
@@ -118,7 +131,12 @@ const Form = forwardRef(
                      >
                        {field.label}
                      </label>
-                     <select name={field.name} className='border border-gray-300 bg-gray-100 text-sm w-full px-3 py-2 focus:outline-none focus:border-gray-500 mb-2'>
+                     <select
+                        name={field.name}
+                        value={formData[field.name]}
+                        onChange={handleInputChange}
+                        className='border border-gray-300 bg-gray-100 text-sm w-full px-3 py-2 focus:outline-none focus:border-gray-500 mb-2'
+                    >
                         {field.options.map((option, optionIndex) => (
                             <option key={optionIndex} value={option}>
                                 {option}

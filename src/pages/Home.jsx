@@ -8,21 +8,7 @@ import { useCreateDataMutation } from '../services/alumniApi'
 import { toast } from 'react-toastify'
 function Home() {
     const [createData] = useCreateDataMutation();
-    const initialFormData = {
-        fname: '',
-        mname: '',
-        lname: '',
-        gender: 'select',
-        civilStatus: 'select',
-        studentNumber: '',
-        course: '',
-        year: '',
-        employmentStatus: 'select',
-        relatedOrNot: 'select',
-        employmentType: 'select',
-        email: ''
-    };
-    const [formData, setFormData] = useState(initialFormData);
+    const [formData, setFormData] = useState({});
     const notify = () => toast.success("Data Inserted Successfully")
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -34,7 +20,9 @@ function Home() {
         .unwrap()
         .then(response => {
             if(response.status === "success"){
-                setFormData(initialFormData)
+                setFormData(Object.fromEntries(
+                    Object.entries(formData).map(([key]) => [key, ''])
+                  ));
                 notify()
             }
         })

@@ -33,13 +33,12 @@ function AlumniList() {
     <div className='w-full h-full grid place-items-center sm:h-[100vh]'>
       <div className='grid place-items-center gap-5'>
         <h1 className='text-4xl font-bold text-black sm-text-sm'>Alumni List</h1>
-      <div className='w-[90%] border-2 rounded-lg min-h-62 overflow-x-scroll border-2rounded-xl'>
+      <div className='w-[90%] max-h-[700px] rounded-lg min-h-62 overflow-x-scroll border-2 sm:max-h-96'>
         <TableContext.Provider
           value={{ 
             tableData: list,
             tableHeader: header,
-            title: 'Alumni List',
-            actions: true
+            title: 'Alumni List'
           }}
         >
           <Table />

@@ -26,7 +26,10 @@ export const NavigationContext = createContext({
     onChangeTab: () => {}
 })
 
-export const useModalContext = () => useContext(ModalContext);
+export const RouteContext = createContext({
+    onSecurity: null
+})
+export const useRouteContext = () => useContext(RouteContext);
 export const useLoginContext = () => useContext(LoginContext);
 export const useFormContext = () => useContext(FormContext);
 export const useTableContext = () => useContext(TableContext);

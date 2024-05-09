@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { data } from "autoprefixer";
 import Cookies from "js-cookie";
 export const alumniApi = createApi({
     reducerPath: 'alumniApi',
@@ -11,7 +12,7 @@ export const alumniApi = createApi({
             }
         }
     }),
-    tagTypes: ['AlumniForm', 'AlumniData', 'UserData'],
+    tagTypes: ['AlumniForm', 'AlumniData', 'UserData', 'UpdateUser'],
     endpoints: (builder) => ({
         createData: builder.mutation({
             query:(args) => {
@@ -25,7 +26,7 @@ export const alumniApi = createApi({
                     }
                 }
             },
-            invalidatesTags: ['AlumniForm', 'UserData']
+           invalidatesTags: ['AlumniForm']
         }),
 
         deleteData: builder.mutation({
@@ -39,8 +40,24 @@ export const alumniApi = createApi({
                     }
                 }
             },
-            invalidatesTags: ['AlumniForm', 'UserData', 'AlumniList']
+           invalidatesTags: ['AlumniData', 'UserData']
         }),
+
+        updateData: builder.mutation({
+            query:(args) => {
+                const {actionType, id, url, data} = args;
+                return {
+                    url: `/alumni-list/${id}`,
+                    method: 'PUT',
+                    body: {
+                        actionType,
+                        data
+                    }
+                }
+            },
+           invalidatesTags: ['UpdateUser']
+        }),
+
 
         getAlumniData: builder.query({
             query: (args) => {
@@ -55,7 +72,7 @@ export const alumniApi = createApi({
                     }
                 }
             },
-            invalidatesTags: ['AlumniData']
+            providesTags: ['AlumniForm']
         }),
 
         getUserData: builder.query({
@@ -71,7 +88,7 @@ export const alumniApi = createApi({
                     }
                 }
             },
-            invalidatesTags: ['UserData']
+            providesTags: ['UserData', 'AlumniForm', 'UpdateUser']
         })
     })
 })
@@ -80,5 +97,6 @@ export const {
     useCreateDataMutation,
     useGetAlumniDataQuery,
     useGetUserDataQuery,
-    useDeleteDataMutation
+    useDeleteDataMutation,
+    useUpdateDataMutation
 } = alumniApi;
