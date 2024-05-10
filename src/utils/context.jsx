@@ -23,7 +23,7 @@ export const LoginContext = createContext({
 
 
 export const NavigationContext = createContext({
-    onChangeTab: () => {}
+    onChangeTab: () => {},
 })
 
 export const RouteContext = createContext({

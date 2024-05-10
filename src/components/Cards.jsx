@@ -23,11 +23,11 @@ function Cards({
     }
 
   return (
-    <div className={`${bgColorChange} border w-72 h-32 rounded-xl flex justify-center items-center gap-10`}>
-        <img src={imageLogo} alt="Logo" className='w-20 h-20'/>
+    <div className={`${bgColorChange} border w-72 h-32 rounded-xl flex justify-center items-center gap-10 sm:w-52 sm:h-24`}>
+        <img src={imageLogo} alt="Logo" className='w-20 h-20 sm:w-12 sm:h-12'/>
         <div className='grid'>
-            <h1 className='text-white font-serif text-3xl'>{title}</h1>
-            <h1 className='text-white font-serif text-2xl'>{count}</h1>
+            <h1 className='text-white font-serif text-3xl sm:text-2xl font-bold'>{title}</h1>
+            <h1 className='text-white font-serif text-2xl sm:text-xl font-bold'>{count}</h1>
         </div>
     </div>
   )

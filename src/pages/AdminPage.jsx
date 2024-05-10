@@ -7,11 +7,15 @@ import { NavigationContext } from '../utils/context'
 import Home from './Home'
 function AdminPage() {
   const [pages, setPages] = useState('dashboard');
+  const [openSideBar, setOpenSideBar] = useState(false)
 
   const handleTab = (tab) => {
     setPages(tab)
   }
 
+  const handleCloseSidebar = () => {
+    setOpenSideBar(true)
+  }
   const renderPages = (pages) => {
     switch(pages){
       case 'dashboard':
@@ -32,14 +36,16 @@ function AdminPage() {
   }
   return (
     <div className='flex h-full'>
-      <NavigationContext.Provider
-            value={{ 
-              pages: null,
-              onChangeTab: (tab) => handleTab(tab)
-             }}>
-              <SideBar />
-      </NavigationContext.Provider>
-        <div className='w-full'>
+      <div>
+        <NavigationContext.Provider
+              value={{ 
+                pages: null,
+                onChangeTab: (tab) => handleTab(tab),
+              }}>
+                <SideBar />
+        </NavigationContext.Provider>
+      </div>
+        <div className='w-full' onClick={() => handleCloseSidebar()}>
             {renderPages(pages)}
         </div>
     </div>
