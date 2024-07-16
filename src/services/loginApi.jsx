@@ -5,7 +5,7 @@ import { useState } from "react";
 export const loginAPI = createApi({
     reducerPath: 'loginAPI',
     baseQuery: fetchBaseQuery({
-        baseUrl: 'https://atsdevs.org/atsbackend/public/api/',
+        baseUrl: 'https://reuvindevs.com/atsbe/public/api/',
         prepareHeaders: (headers) => {
             const token = Cookies.get('token');
             if (token) {

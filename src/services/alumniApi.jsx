@@ -4,7 +4,7 @@ import Cookies from "js-cookie";
 export const alumniApi = createApi({
     reducerPath: 'alumniApi',
     baseQuery: fetchBaseQuery({
-        baseUrl: 'https://atsdevs.org/atsbackend/public/api/',
+        baseUrl: 'https://reuvindevs.com/atsbe/public/api/',
         prepareHeaders: (headers) => {
             const token = Cookies.get('token');
             if(token){
